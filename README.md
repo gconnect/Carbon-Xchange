@@ -1,6 +1,6 @@
 # Carbon Credit Market Place & Dashboard
 
-A simple dashboard to display all available carbon credit on the Toucan platform. Querying th Toucan graph data and interacting with the Toucan SDK.
+A simple dashboard to display all available carbon credit on the Toucan platform. Querying the Toucan graph data and interacting with the Toucan SDK.
 
 # Project Description
 CarbonXchange is a decentralized application (DApp) that aims to revolutionize the carbon credit market by providing a platform for buying and selling carbon credits in a transparent and efficient manner. The DApp consists of two main components: a carbon storefront and a climate impact dashboard.
