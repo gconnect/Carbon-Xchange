@@ -1,6 +1,6 @@
 # Carbon Credit Market Place & Dashboard
 
-A user-friendly dashboard to display all available carbon credit on the Toucan platform. Querying the Toucan graph data and interacting with the Toucan SDK.
+A user-friendly dashboard to display all available carbon credit on the Toucan platform. Querying the Toucan graph data and interacting with the Toucan SDK. This Dapp interacts with the Toucan sdk and the graph on the Celo alfajores network.
 
 # Project Description
 CarbonXchange is a decentralized application (DApp) that aims to revolutionize the carbon credit market by providing a platform for buying and selling carbon credits in a transparent and efficient manner. The DApp consists of two main components: a carbon storefront and a climate impact dashboard.
@@ -14,6 +14,10 @@ The climate impact dashboard provides users with a comprehensive overview of the
 Additionally, the dashboard allows users to redeem their TCO2 tokens, earned through various activities or purchased from the carbon storefront, for carbon credits from the available pools. Users can retire their TCO2 tokens and contribute to verified carbon offset projects, actively participating in environmental conservation efforts.
 
 Overall, CarbonXchange empowers individuals and organizations to take action against climate change by providing a user-friendly platform for buying carbon credits, understanding their climate impact, and actively supporting sustainable projects. By leveraging the power of blockchain technology, transparency, and decentralized governance, CarbonXchange aims to drive global efforts towards carbon neutrality and a more sustainable future.
+
+# Development Tools Used
+- Celo composer
+- Toucan SDK and Graph API
 
 # How to Setup the project
 - Fork/clone the repo
