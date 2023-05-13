@@ -21,7 +21,7 @@ Overall, CarbonXchange empowers individuals and organizations to take action aga
 - To start the development server, navigate to react-app directory and type `npm run dev` to start the local server
 
 # Live Preview 
-To test the features of the dapp. you can checkout the live link [here](https://toucan-dashboard.vercel.app/).
+To test the features of the dapp. you can checkout the live link [here](https://carbonxchange.vercel.app/).
 
 # LICENSE
 Distributed under the MIT dashboard. See [License](https://github.com/gconnect/Toucan-Dashboard/blob/master/LICENSE) for details.
