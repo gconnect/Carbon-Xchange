@@ -2,6 +2,7 @@ import { Disclosure } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Header() {
     return (
@@ -26,23 +27,30 @@ export default function Header() {
                     <Image className="block h-8 w-auto sm:block lg:block" src="/logo.svg" width="24" height="24" alt="Celo Logo" />
                   </div>
                   <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
-                    <a
+                    <Link
                       href="/"
                       className="inline-flex items-center border-b-2 border-black px-1 pt-1 text-sm font-medium text-gray-900"
                     >
                       Home
-                    </a>
+                    </Link>
                     
                   </div>
 
                   <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
-                    <a
+                    <Link
+                      href="/Redeems"
+                      className="inline-flex items-center border-b-2 border-black px-1 pt-1 text-sm font-medium text-gray-900"
+                    >
+                      Redeems
+                    </Link>                  
+                  </div>
+                  <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
+                    <Link
                       href="/Retirements"
                       className="inline-flex items-center border-b-2 border-black px-1 pt-1 text-sm font-medium text-gray-900"
                     >
                       Retirements
-                    </a>
-                    
+                    </Link>                  
                   </div>
                 </div>
                 <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
