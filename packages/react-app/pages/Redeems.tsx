@@ -12,11 +12,11 @@ export default function Redeems() {
     // const tokens = await sdk.fetchAllTCO2Tokens()
     // const poolContents = await sdk.fetchPoolContents("BCT")
 
-    // const result = await sdk.fetchUserRedeems(address as string, "NCT")
-    const retire = await sdk.fetchUserRetirements(address as string)
+      const redeems = await sdk.fetchRedeems("NCT")
+    
 
-    console.log(retire)
-    return retire
+    console.log(redeems)
+    return redeems
     },[address])
   
   useEffect(() => {

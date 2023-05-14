@@ -86,6 +86,41 @@ const CarbonCreditDetail: React.FC = () => {
   }
   };
 
+
+  const autoOffsetUsingPoolToken = async (selectedToken: PoolSymbol, amount: string) => {
+    try {
+      if (!amount) {
+      alert("Amount field required")
+    }
+    const ethereum: any = window.ethereum;
+    if (typeof window.ethereum !== "undefined") {
+      const provider = new ethers.providers.Web3Provider(ethereum);
+      const signer = provider.getSigner();
+      console.log("signer", signer);
+      const sdk = new ToucanClient("alfajores");
+      sdk.setProvider(provider);
+      sdk.setSigner(signer);
+      const amountBN = BigNumber.from(amount);
+      const contractReceipt = await sdk.redeemAuto2(
+        selectedToken,
+        ethers.utils.parseEther(amount)
+      );
+      console.log(contractReceipt);
+      // setcontractReceipt(contractReceipt);
+      setAmount("")
+    } else {
+      // `window.ethereum` is not available, so the user may not have a web3-enabled browser
+      console.error(
+        "Please install MetaMask or another web3-enabled browser extension"
+      );
+    }
+  } catch (error) {
+    console.error(error);
+  }
+  };
+
+
+
   const handleAmount = (e: React.FormEvent<HTMLInputElement>) => {
     setAmount(e.currentTarget.value)
   }
@@ -164,7 +199,7 @@ const CarbonCreditDetail: React.FC = () => {
               <input className='block border p-2 mt-2' type="text" placeholder='Enter amount' value={amount} onChange={handleAmount} />
               <button
                 className=" block bg-yellow-500 hover:bg-blue-600 text-white font-bold py-2 px-4 mt-4 rounded"
-                onClick={() => redeemAuto(symbol, amount)}
+                onClick={() => autoOffsetUsingPoolToken(symbol, amount)}
               >
                 Redeem
               </button>
