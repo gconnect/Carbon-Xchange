@@ -10,14 +10,15 @@ export default function Redeems() {
     const fetchResult =useCallback(async () => {
     const sdk = new ToucanClient("alfajores");
     // const tokens = await sdk.fetchAllTCO2Tokens()
-    // const poolContents = await sdk.fetchPoolContents("BCT")
+    const poolContents = await sdk.fetchPoolContents("BCT")
 
       const redeems = await sdk.fetchRedeems("NCT")
     
 
-    console.log(redeems)
+      console.log(redeems)
+      console.log(poolContents)
     return redeems
-    },[address])
+    },[])
   
   useEffect(() => {
       fetchResult()

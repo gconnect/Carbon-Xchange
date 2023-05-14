@@ -9,8 +9,8 @@ export default function Retirements() {
 
   const fetchResult =useCallback(async () => {
     const sdk = new ToucanClient("alfajores");
-    // const retire = await sdk.fetchUserRetirements(address as string)
-    // console.log(retire)
+    const retire = await sdk.fetchUserRetirements(address as string)
+    console.log(retire)
     console.log(retire)
     return retire
     },[address])
