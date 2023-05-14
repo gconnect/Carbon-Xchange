@@ -6,6 +6,7 @@ import ToucanClient from 'toucan-sdk';
 import { BigNumber, ContractReceipt, ethers } from 'ethers';
 import { PoolSymbol } from 'toucan-sdk/dist/types';
 import Link from 'next/link';
+import { useProvider, useSigner } from 'wagmi';
 
 interface QueryParams extends ParsedUrlQuery{
     id: string,
@@ -31,6 +32,12 @@ interface QueryParams extends ParsedUrlQuery{
 const CarbonCreditDetail: React.FC = () => {
   const [contractReceipt, setcontractReceipt] = useState<ContractReceipt>()
   const [amount, setAmount] = useState<string>("")
+  const [redeemTokenAddress, setTokenAddress] = useState<string>("")
+
+  const provider = useProvider() 
+  const { data: signer } = useSigner()
+  const sdk = new ToucanClient("alfajores", provider);
+  signer && sdk.setSigner(signer)
 
   const router = useRouter();
   const query = router.query as QueryParams
@@ -54,78 +61,38 @@ const CarbonCreditDetail: React.FC = () => {
     owner
   } = query
   
-  const redeemAuto = async (selectedToken: PoolSymbol, amount: string) => {
+  const redeemAuto = async (amount: string) => {
     try {
       if (!amount) {
-      alert("Amount field required")
+        alert("Amount field required")
+      }
+      const redeemToken = await sdk.redeemAuto("NCT", ethers.utils.parseEther(amount))
+      console.log(redeemToken.confirmations)
+      // redeemToken && setTokenAddress(redeemToken[0].address)
+    } catch (error) {
+      console.error(error);
     }
-    const ethereum: any = window.ethereum;
-    if (typeof window.ethereum !== "undefined") {
-      const provider = new ethers.providers.Web3Provider(ethereum);
-      const signer = provider.getSigner();
-      console.log("signer", signer);
-      const sdk = new ToucanClient("alfajores");
-      sdk.setProvider(provider);
-      sdk.setSigner(signer);
-      const amountBN = BigNumber.from(amount);
-      const contractReceipt = await sdk.redeemAuto(
-        selectedToken,
-        ethers.utils.parseEther(amount)
-      );
-      console.log(contractReceipt);
-      setcontractReceipt(contractReceipt);
-      setAmount("")
-    } else {
-      // `window.ethereum` is not available, so the user may not have a web3-enabled browser
-      console.error(
-        "Please install MetaMask or another web3-enabled browser extension"
-      );
-    }
-  } catch (error) {
-    console.error(error);
-  }
   };
 
-
-  const autoOffsetUsingPoolToken = async (selectedToken: PoolSymbol, amount: string) => {
+  const retireToken = async (amount: string) => {
     try {
       if (!amount) {
-      alert("Amount field required")
+        alert("Amount field required")
+      }
+      const retire = await sdk.retire(ethers.utils.parseEther(amount), "0xb297f730e741a822a426c737ecd0f7877a9a2c22")
+      console.log(retire.transactionHash)
+    } catch (error) {
+      console.error(error);
     }
-    const ethereum: any = window.ethereum;
-    if (typeof window.ethereum !== "undefined") {
-      const provider = new ethers.providers.Web3Provider(ethereum);
-      const signer = provider.getSigner();
-      console.log("signer", signer);
-      const sdk = new ToucanClient("alfajores");
-      sdk.setProvider(provider);
-      sdk.setSigner(signer);
-      const amountBN = BigNumber.from(amount);
-      const contractReceipt = await sdk.redeemAuto2(
-        selectedToken,
-        ethers.utils.parseEther(amount)
-      );
-      console.log(contractReceipt);
-      // setcontractReceipt(contractReceipt);
-      setAmount("")
-    } else {
-      // `window.ethereum` is not available, so the user may not have a web3-enabled browser
-      console.error(
-        "Please install MetaMask or another web3-enabled browser extension"
-      );
-    }
-  } catch (error) {
-    console.error(error);
-  }
+
+    
   };
-
-
 
   const handleAmount = (e: React.FormEvent<HTMLInputElement>) => {
     setAmount(e.currentTarget.value)
   }
   const formattedDate = (timestamp : number) => {
-    const date = new Date(timestamp);
+    const date = new Date(timestamp * 1000);
     const options: any = { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric' };
     const readableDate = date.toLocaleString(undefined, options);
     return readableDate
@@ -142,6 +109,9 @@ const CarbonCreditDetail: React.FC = () => {
           </p>
           <p className="text-center text-gray-600 mt-2">
             { `Score: ${score}`}
+          </p>
+             <p className="text-center text-gray-600 mt-2">
+            { `Token Address: ${tokenAddress}`}
           </p>
           <p className="text-center text-gray-600 mt-2">
             <Link className='text-blue-500' href={`https://explorer.celo.org/alfajores/tx/${creationTx}`}>
@@ -199,9 +169,9 @@ const CarbonCreditDetail: React.FC = () => {
               <input className='block border p-2 mt-2' type="text" placeholder='Enter amount' value={amount} onChange={handleAmount} />
               <button
                 className=" block bg-yellow-500 hover:bg-blue-600 text-white font-bold py-2 px-4 mt-4 rounded"
-                onClick={() => autoOffsetUsingPoolToken(symbol, amount)}
+                onClick={() => retireToken(amount)}
               >
-                Redeem
+                Retire
               </button>
             </div>
           </div>
