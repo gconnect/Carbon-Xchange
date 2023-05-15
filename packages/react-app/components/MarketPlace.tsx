@@ -91,21 +91,21 @@ const MarketPlace: React.FC = () => {
   return (
     <div>
       <div className="container mx-auto px-4">
-      <h1 className="text-3xl font-bold text-center text-gray-800">
+      <h1 className="text-6xl font-bold text-center text-slate-400 mt-24">
         CarbonXchange Credit Marketplace
       </h1>
-      <p className="text-center text-gray-600 my-2 text-lg ">
+      <p className="text-center text-slate-400 my-2 text-2xl ">
         Discover and purchase carbon credits to offset your carbon footprint
         </p>
         <div className='flex flex-row justify-center items-center'>
           <input className='border p-4 w-3/4 my-4' type="text" placeholder='Search TCO2 token by token symbol, name, or token address' value={searchItem} onChange={handleSearch} />
-          <button onClick={searchToken} className='bg-yellow-400 p-4  rounded'>Search</button>
+          <button onClick={searchToken} className='bg-accent p-4  rounded'>Search</button>
         </div>
       </div>
       {loading ? <div className='text-center'>Loading</div> : error ? <div>Error occured</div> : filteredList && filteredList.length !== 0 ? <div>
         <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4'>
-          { filteredList && filteredList.map((item: any, index: number) => <div key={index}>
-            <div className="drop-shadow-md bg-white m-2 p-4 cursor:pointer">
+          { filteredList && filteredList.map((item: any, index: number) => <div className='' key={index}>
+            <div className="drop-shadow-md m-2 p-4 cursor:pointer bg-slate-800 text-slate-300">
               {images && <Image className='w-full' key={index} src={images[index].webformatURL && images[index].webformatURL} alt='images' height={200} width={200} />}
               {item.name}
               <button
@@ -135,7 +135,7 @@ const MarketPlace: React.FC = () => {
                   })
                 }
                 type="button"
-                className="inline-block bg-yellow-500 p-2 my-2 w-full rounded  px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]"
+                className="inline-block bg-accent p-2 my-2 w-full rounded  px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]"
                 data-te-toggle="modal"
                 data-te-target="#redeemModal"
                 data-te-ripple-init
@@ -149,7 +149,7 @@ const MarketPlace: React.FC = () => {
       </div> :
         <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4'>
           { data && data.tco2Tokens.map((item: any, index: number) => <div key={index}>
-            <div className="drop-shadow-md bg-white m-2 p-4 cursor:pointer">
+            <div className="drop-shadow-md bg-slate-800 rounded m-2 p-4 text-slate-300 cursor:pointer">
               {images && <Image className='w-full' key={index} src={images[index]?.webformatURL && images[index].webformatURL} alt='images' height={200} width={200} />}
               {item.name}
               <button
@@ -179,7 +179,7 @@ const MarketPlace: React.FC = () => {
                   })
                 }
                 type="button"
-                className="inline-block bg-yellow-500 p-2 my-2 w-full rounded  px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]"
+                className="inline-block bg-accent p-2 my-2 w-full rounded  px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]"
                 data-te-toggle="modal"
                 data-te-target="#redeemModal"
                 data-te-ripple-init

@@ -3,11 +3,11 @@ import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import Image from "next/image";
 import Link from "next/link";
-import Logo from "../images/logo.png"
+import Logo from "../images/logo-grey.svg"
 
 export default function Header() {
     return (
-      <Disclosure as="nav" className="bg-yellow-400 border-b border-black">
+      <Disclosure as="nav" className="bg-slate-950 border-b border-black">
         {({ open }) => (
           <>
             <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
@@ -30,7 +30,7 @@ export default function Header() {
                   <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
                     <Link
                       href="/"
-                      className="inline-flex items-center border-b-2 border-black px-1 pt-1 text-sm font-medium text-gray-900"
+                      className="inline-flex items-center border-b-2 border-black px-1 pt-1 text-sm font-medium text-slate-400"
                     >
                       Home
                     </Link>
@@ -39,7 +39,7 @@ export default function Header() {
                   <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
                     <Link
                       href="/Retirements"
-                      className="inline-flex items-center border-b-2 border-black px-1 pt-1 text-sm font-medium text-gray-900"
+                      className="inline-flex items-center border-b-2 border-black px-1 pt-1 text-sm font-medium text-slate-400"
                     >
                       Retirements
                     </Link>                  
