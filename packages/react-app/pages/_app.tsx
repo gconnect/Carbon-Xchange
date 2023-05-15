@@ -5,7 +5,8 @@ import "@rainbow-me/rainbowkit/styles.css";
 import type { AppProps } from "next/app";
 import {
   connectorsForWallets,
-  RainbowKitProvider
+  RainbowKitProvider,
+  darkTheme
 } from "@rainbow-me/rainbowkit";
 import { 
   metaMaskWallet, 
@@ -62,7 +63,15 @@ function App({ Component, pageProps }: AppProps) {
 
   return (
     <WagmiConfig client={wagmiClient}>
-      <RainbowKitProvider chains={chains} coolMode={true}>
+      <RainbowKitProvider
+        theme={darkTheme(
+          {
+          accentColor: '#048A81',
+          accentColorForeground: 'white',
+        }
+        )}
+        chains={chains}
+        coolMode={true}>
         <ApolloProvider client={client}>
           <Layout>
           <Component {...pageProps} />

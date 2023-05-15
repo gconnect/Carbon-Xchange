@@ -8,7 +8,7 @@ import { PoolSymbol } from 'toucan-sdk/dist/types';
 import Link from 'next/link';
 import { useProvider, useSigner } from 'wagmi';
 import { formattedDate } from '@/utils/util';
-
+import { useAccount } from 'wagmi';
 interface QueryParams extends ParsedUrlQuery{
     id: string,
     name: string;
@@ -34,7 +34,8 @@ const CarbonCreditDetail: React.FC = () => {
   const [contractReceipt, setcontractReceipt] = useState<ContractReceipt>()
   const [amount, setAmount] = useState<string>("")
   const [redeemTokenAddress, setTokenAddress] = useState<string>("")
-
+  const { address } = useAccount()
+  
   const provider = useProvider() 
   const { data: signer } = useSigner()
   const sdk = new ToucanClient("alfajores", provider);
@@ -83,13 +84,14 @@ const CarbonCreditDetail: React.FC = () => {
       if (!amount) {
         alert("Amount field required")
       }
+      if (!address) {
+        alert("Please connect your wallet")
+      }
       const retire = await sdk.retire(ethers.utils.parseEther(amount), tokenAddress)
       console.log(retire.transactionHash)
     } catch (error) {
       console.error(error);
-    }
-
-    
+    }  
   };
 
   const handleAmount = (e: React.FormEvent<HTMLInputElement>) => {
@@ -97,34 +99,34 @@ const CarbonCreditDetail: React.FC = () => {
   }
 
   return (
-    <div className="bg-slate-800 text-slate-300 min-h-screen">
-      <h1 className="bg-slate-600 py-6">
+    <div className="bg-slate-900 text-slate-400 min-h-screen">
+      <h1 className="bg-slate-800 py-6">
         <div className="container mx-auto px-4">
-          <h1 className="text-3xl font-bold text-center text-slate-300">
+          <h1 className="text-3xl font-bold text-center text-slate-400">
             {name}
           </h1>
-          <p className="text-center text-slate-300 mt-2">
+          <p className="text-center text-slate-400 mt-2">
             { symbol}
           </p>
-          <p className="text-center text-slate-300 mt-2">
+          <p className="text-center text-slate-400 mt-2">
             { `Score: ${score}`}
           </p>
-             <p className="text-center text-slate-300 mt-2">
+             <p className="text-center text-slate-400 mt-2">
             { `Token Address: ${tokenAddress}`}
           </p>
-          <p className="text-center text-slate-300 mt-2">
+          <p className="text-center text-slate-400 mt-2">
             <Link className='text-blue-500' href={`https://explorer.celo.org/alfajores/tx/${creationTx}`}>
                           Creation Hash
             </Link>
           </p>
-           <p className="text-center text-gray-600 mt-2 ">
+           <p className="text-center text-slate-400 mt-2 ">
             { `Created At: ${formattedDate(parseInt(createdAt))}`}
           </p>
         </div>
       </h1>
       <div className="container mx-auto px-4 py-8 ">
         <div className="">
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 bg-slate-600 rounded shadow-md p-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 bg-slate-800 rounded shadow-md p-6">
             <Image
               src={image}
               alt={name}
@@ -134,34 +136,34 @@ const CarbonCreditDetail: React.FC = () => {
             />
             <div className='p-2 text-lg'>
               <h1 className='text-2xl font-bold'>Project Vintage</h1>
-              <p className="text-slate-300 mt-2">{vintageName}</p>
-               <p className="text-slate-300 mt-2">
+              <p className="text-slate-400 mt-2">{vintageName}</p>
+               {/* <p className="text-slate-400 mt-2">
                <strong>Id:</strong>  {projectVintageCreatorId}
-              </p>
+              </p> */}
               <p className='mt-2'><strong>StartTime:</strong>  {formattedDate(parseInt(startTime))}</p>
               <p className='mt-2'><strong>EndTime:</strong> {formattedDate(parseInt(endTime))}</p>
-              <p className="text-slate-300 mt-2">
+              <p className="text-slate-400 mt-2">
                <strong>isCCPcompliant:</strong>  {isCCPcompliant}
               </p>
-               <p className="text-slate-300 mt-2">
+               <p className="text-slate-400 mt-2">
                <strong>isCorsiaCompliant:</strong> {isCorsiaCompliant}
               </p>
-              <p className="text-slate-300 mt-2">
+              <p className="text-slate-400 mt-2">
                <strong>totalVintageQuantity:</strong> {totalVintageQuantity}
               </p>
-              <span className="text-slate-300 mr-2 mt-2">
-                <Link className='text-blue-500' href={`https://explorer.celo.org/alfajores/address/${projectVintageCreatorId}`}>
+              <span className="text-slate-400 mr-2 mt-2">
+                <Link className='text-blue-400' href={`https://explorer.celo.org/alfajores/address/${projectVintageCreatorId}`}>
                   Vintage Creator Id
                 </Link>    
               </span>
 
-              <span className="text-slate-300 m-2">
-                <Link className='text-green-500' href={`https://explorer.celo.org/alfajores/address/${owner}`}>
+              <span className="text-slate-400 m-2">
+                <Link className='text-blue-400' href={`https://explorer.celo.org/alfajores/address/${owner}`}>
                   owner
                 </Link>    
               </span>
-              <span className="text-slate-300 mt-2">
-                <Link className='text-slate-300' href={`https://explorer.celo.org/alfajores/tx/${tx}`}>
+              <span className="text-slate-400 mt-2">
+                <Link className='text-blue-400' href={`https://explorer.celo.org/alfajores/tx/${tx}`}>
                   Transaction Hash
                 </Link>
               </span>
