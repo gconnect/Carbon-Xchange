@@ -8,12 +8,10 @@ import { RedeemsResponse } from 'toucan-sdk';
 
 export default function Redeems() {
   const {address} = useAccount()
-  const [currentAddress, setCurrentAddress] = useState<string>('')
   const [redeems, setRedeems] = useState<RedeemsResponse[] | undefined>([])
 
     const fetchResult =useCallback(async () => {
     const sdk = new ToucanClient("alfajores");
-    // const tokens = await sdk.fetchAllTCO2Tokens()
       const myAddress = address?.toLocaleLowerCase() as string
       const list = await sdk.fetchUserRedeems(myAddress, "NCT")
       setRedeems(list)
@@ -23,7 +21,7 @@ export default function Redeems() {
   
   useEffect(() => {
       fetchResult()
-    },[fetchResult])
+    })
 
   return (
     <div>Redeems</div>

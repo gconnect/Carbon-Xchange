@@ -7,6 +7,7 @@ import { BigNumber, ContractReceipt, ethers } from 'ethers';
 import { PoolSymbol } from 'toucan-sdk/dist/types';
 import Link from 'next/link';
 import { useProvider, useSigner } from 'wagmi';
+import { formattedDate } from '@/utils/util';
 
 interface QueryParams extends ParsedUrlQuery{
     id: string,
@@ -61,25 +62,28 @@ const CarbonCreditDetail: React.FC = () => {
     owner
   } = query
   
-  const redeemAuto = async (amount: string) => {
-    try {
-      if (!amount) {
-        alert("Amount field required")
-      }
-      const redeemToken = await sdk.redeemAuto("NCT", ethers.utils.parseEther(amount))
-      console.log(redeemToken.confirmations)
-      // redeemToken && setTokenAddress(redeemToken[0].address)
-    } catch (error) {
-      console.error(error);
-    }
-  };
+  
+  // const redeemAuto = async (amount: string) => {
+  //   try {
+  //     if (!amount) {
+  //       alert("Amount field required")
+  //     }
+  //     // const redeemToken = await sdk.redeemAuto2("NCT", ethers.utils.parseEther(amount))
+  //     // console.log(redeemToken.confirmations)
+  //     // redeemToken && setTokenAddress(redeemToken[0].address)
+  //    // const redeemToken = await sdk.depositTCO2("NCT",  ethers.utils.parseEther(amount), "0xB297F730E741a822a426c737eCD0F7877A9a2c22")
+
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // };
 
   const retireToken = async (amount: string) => {
     try {
       if (!amount) {
         alert("Amount field required")
       }
-      const retire = await sdk.retire(ethers.utils.parseEther(amount), "0xb297f730e741a822a426c737ecd0f7877a9a2c22")
+      const retire = await sdk.retire(ethers.utils.parseEther(amount), tokenAddress)
       console.log(retire.transactionHash)
     } catch (error) {
       console.error(error);
@@ -91,12 +95,7 @@ const CarbonCreditDetail: React.FC = () => {
   const handleAmount = (e: React.FormEvent<HTMLInputElement>) => {
     setAmount(e.currentTarget.value)
   }
-  const formattedDate = (timestamp : number) => {
-    const date = new Date(timestamp * 1000);
-    const options: any = { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric' };
-    const readableDate = date.toLocaleString(undefined, options);
-    return readableDate
-  }
+
   return (
     <div className="bg-gray-100 min-h-screen">
       <h1 className="bg-white py-6">

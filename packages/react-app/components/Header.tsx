@@ -35,15 +35,6 @@ export default function Header() {
                     </Link>
                     
                   </div>
-
-                  <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
-                    <Link
-                      href="/Redeems"
-                      className="inline-flex items-center border-b-2 border-black px-1 pt-1 text-sm font-medium text-gray-900"
-                    >
-                      Redeems
-                    </Link>                  
-                  </div>
                   <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
                     <Link
                       href="/Retirements"
@@ -67,6 +58,13 @@ export default function Header() {
                   className="block border-l-4 border-black py-2 pl-3 pr-4 text-base font-medium text-black"
                 >
                   Home
+                </Disclosure.Button>
+                <Disclosure.Button
+                  as="a"
+                  href="/Retirements"
+                  className="block border-l-4 border-black py-2 pl-3 pr-4 text-base font-medium text-black"
+                >
+                  Retirements
                 </Disclosure.Button>
                 {/* Add here your custom menu elements */}
               </div>
