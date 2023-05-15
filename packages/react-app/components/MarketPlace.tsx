@@ -92,14 +92,14 @@ const MarketPlace: React.FC = () => {
     <div>
       <div className="container mx-auto px-4">
       <h1 className="text-3xl font-bold text-center text-gray-800">
-        Carbon Credit Marketplace
+        CarbonXchange Credit Marketplace
       </h1>
       <p className="text-center text-gray-600 my-2 text-lg ">
         Discover and purchase carbon credits to offset your carbon footprint
         </p>
-        <div>
+        <div className='flex flex-row justify-center items-center'>
           <input className='border p-4 w-3/4 my-4' type="text" placeholder='Search TCO2 token by token symbol, name, or token address' value={searchItem} onChange={handleSearch} />
-          <button onClick={searchToken} className='bg-yellow-400 p-4 rounded'>Search</button>
+          <button onClick={searchToken} className='bg-yellow-400 p-4  rounded'>Search</button>
         </div>
       </div>
       {loading ? <div className='text-center'>Loading</div> : error ? <div>Error occured</div> : filteredList && filteredList.length !== 0 ? <div>
