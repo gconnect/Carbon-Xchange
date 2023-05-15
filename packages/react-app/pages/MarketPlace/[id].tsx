@@ -97,22 +97,22 @@ const CarbonCreditDetail: React.FC = () => {
   }
 
   return (
-    <div className="bg-gray-100 min-h-screen">
-      <h1 className="bg-white py-6">
+    <div className="bg-slate-800 text-slate-300 min-h-screen">
+      <h1 className="bg-slate-600 py-6">
         <div className="container mx-auto px-4">
-          <h1 className="text-3xl font-bold text-center text-gray-800">
+          <h1 className="text-3xl font-bold text-center text-slate-300">
             {name}
           </h1>
-          <p className="text-center text-gray-600 mt-2">
+          <p className="text-center text-slate-300 mt-2">
             { symbol}
           </p>
-          <p className="text-center text-gray-600 mt-2">
+          <p className="text-center text-slate-300 mt-2">
             { `Score: ${score}`}
           </p>
-             <p className="text-center text-gray-600 mt-2">
+             <p className="text-center text-slate-300 mt-2">
             { `Token Address: ${tokenAddress}`}
           </p>
-          <p className="text-center text-gray-600 mt-2">
+          <p className="text-center text-slate-300 mt-2">
             <Link className='text-blue-500' href={`https://explorer.celo.org/alfajores/tx/${creationTx}`}>
                           Creation Hash
             </Link>
@@ -124,7 +124,7 @@ const CarbonCreditDetail: React.FC = () => {
       </h1>
       <div className="container mx-auto px-4 py-8 ">
         <div className="">
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 bg-white rounded shadow-md p-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 bg-slate-600 rounded shadow-md p-6">
             <Image
               src={image}
               alt={name}
@@ -134,40 +134,40 @@ const CarbonCreditDetail: React.FC = () => {
             />
             <div className='p-2 text-lg'>
               <h1 className='text-2xl font-bold'>Project Vintage</h1>
-              <p className="text-gray-700 mt-2">{vintageName}</p>
-               <p className="text-gray-800 mt-2">
+              <p className="text-slate-300 mt-2">{vintageName}</p>
+               <p className="text-slate-300 mt-2">
                <strong>Id:</strong>  {projectVintageCreatorId}
               </p>
               <p className='mt-2'><strong>StartTime:</strong>  {formattedDate(parseInt(startTime))}</p>
               <p className='mt-2'><strong>EndTime:</strong> {formattedDate(parseInt(endTime))}</p>
-              <p className="text-gray-800 mt-2">
+              <p className="text-slate-300 mt-2">
                <strong>isCCPcompliant:</strong>  {isCCPcompliant}
               </p>
-               <p className="text-gray-800 mt-2">
+               <p className="text-slate-300 mt-2">
                <strong>isCorsiaCompliant:</strong> {isCorsiaCompliant}
               </p>
-              <p className="text-gray-800 mt-2">
+              <p className="text-slate-300 mt-2">
                <strong>totalVintageQuantity:</strong> {totalVintageQuantity}
               </p>
-              <span className="text-gray-800 mr-2 mt-2">
+              <span className="text-slate-300 mr-2 mt-2">
                 <Link className='text-blue-500' href={`https://explorer.celo.org/alfajores/address/${projectVintageCreatorId}`}>
                   Vintage Creator Id
                 </Link>    
               </span>
 
-              <span className="text-gray-800 m-2">
+              <span className="text-slate-300 m-2">
                 <Link className='text-green-500' href={`https://explorer.celo.org/alfajores/address/${owner}`}>
                   owner
                 </Link>    
               </span>
-              <span className="text-gray-800 mt-2">
-                <Link className='text-blue-500' href={`https://explorer.celo.org/alfajores/tx/${tx}`}>
+              <span className="text-slate-300 mt-2">
+                <Link className='text-slate-300' href={`https://explorer.celo.org/alfajores/tx/${tx}`}>
                   Transaction Hash
                 </Link>
               </span>
               <input className='block border p-2 mt-2' type="text" placeholder='Enter amount' value={amount} onChange={handleAmount} />
               <button
-                className=" block bg-yellow-500 hover:bg-blue-600 text-white font-bold py-2 px-4 mt-4 rounded"
+                className=" block bg-accent hover:bg-blue-600 text-white font-bold py-2 px-4 mt-4 rounded"
                 onClick={() => retireToken(amount)}
               >
                 Retire
